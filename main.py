@@ -13,6 +13,7 @@ BLACK_COLOR = (0, 0, 0)
 clock = pygame.time.Clock()
 pygame.font.init()
 font = pygame.font.SysFont("comicsans", 75)
+#level = 1
 
 class Game:
 
@@ -30,25 +31,28 @@ class Game:
         background_image = pygame.image.load(image_path)
         self.image = pygame.transform.scale(background_image, (width, height))
 
-    def run_game_loop(self, level):
+    def run_game_loop(self, level_speed):
 
         is_game_over = False
         did_win = False
         direction = 0
+
         player_character = PlayerCharacter("player.png", 375, 700, 50, 50)
 
         enemy_0 = NonPlayerCharacter("enemy.png", 20, 600, 50, 50)
-        enemy_0.SPEED *= level
+        enemy_0.SPEED *= level_speed
 
         enemy_1 = NonPlayerCharacter("enemy.png", self.width - 50, 400, 50, 50)
-        enemy_1.SPEED *= level
+        enemy_1.SPEED *= level_speed
 
         enemy_2 = NonPlayerCharacter("enemy.png", 20, 200, 50, 50)
-        enemy_2.SPEED *= level
+        enemy_2.SPEED *= level_speed
 
         treasure = GameObject("treasure.png", 375, 25, 50, 50)
 
         while not is_game_over:
+
+            #global level
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -65,7 +69,7 @@ class Game:
                     if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                         direction = 0
 
-                print(event)
+                #print(event)
 
             self.game_screen.fill(WHITE_COLOR) #Redraw the background image
             self.game_screen.blit(self.image, (0, 0))
@@ -75,14 +79,15 @@ class Game:
             enemy_0.move(self.width)
             enemy_0.draw(self.game_screen)
 
-            if level > 2: #Increasing difficulty
+            if level_speed > 2: #Level. Increasing difficulty
                 enemy_1.move(self.width)
                 enemy_1.draw(self.game_screen)
-                level = 1
-            if level > 4:
+                level_speed = 1
+
+            if level_speed > 4: #level
                 enemy_2.move(self.width)
                 enemy_2.draw(self.game_screen)
-                level = 1
+                level_speed = 1
 
             if player_character.detect_collision(enemy_0) == True:
                 is_game_over = True
@@ -121,9 +126,11 @@ class Game:
             clock.tick(self.TICK_RATE)
 
         if did_win:
-            self.run_game_loop(level + 0.5)
+            self.run_game_loop(level_speed + 0.5)
+            #level += 1
         else:
             self.run_game_loop(1)
+            #level = 1
 
 
 class GameObject:
