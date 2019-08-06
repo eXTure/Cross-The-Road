@@ -65,7 +65,7 @@ class Game:
                     if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                         direction = 0
 
-            print(event)
+                print(event)
 
             self.game_screen.fill(WHITE_COLOR) #Redraw the background image
             self.game_screen.blit(self.image, (0, 0))
@@ -78,11 +78,13 @@ class Game:
             if level > 2: #Increasing difficulty
                 enemy_1.move(self.width)
                 enemy_1.draw(self.game_screen)
+                level = 1
             if level > 4:
                 enemy_2.move(self.width)
                 enemy_2.draw(self.game_screen)
+                level = 1
 
-            if player_character.detect_collision([enemy_0, enemy_1, enemy_2]) == True:
+            if player_character.detect_collision(enemy_0) == True:
                 is_game_over = True
                 did_win = False
                 text = font.render("You lost! Try again.", True, BLACK_COLOR)
@@ -90,11 +92,27 @@ class Game:
                 pygame.display.update()
                 clock.tick(1)
                 break
-            elif player_character.detect_collision([treasure]):
+            elif player_character.detect_collision(treasure):
                 is_game_over = True
                 did_win = True
                 text = font.render("You Win!", True, WHITE_COLOR)
                 self.game_screen.blit(text, (275, 300))
+                pygame.display.update()
+                clock.tick(1)
+                break
+            elif player_character.detect_collision(enemy_1) == True:
+                is_game_over = True
+                did_win = False
+                text = font.render("You lost! Don't rush!.", True, BLACK_COLOR)
+                self.game_screen.blit(text, (150, 300))
+                pygame.display.update()
+                clock.tick(1)
+                break
+            elif player_character.detect_collision(enemy_2) == True:
+                is_game_over = True
+                did_win = False
+                text = font.render("You lost! Almost there!.", True, BLACK_COLOR)
+                self.game_screen.blit(text, (150, 300))
                 pygame.display.update()
                 clock.tick(1)
                 break
@@ -106,7 +124,6 @@ class Game:
             self.run_game_loop(level + 0.5)
         else:
             self.run_game_loop(1)
-            #return
 
 
 class GameObject:
@@ -143,20 +160,19 @@ class PlayerCharacter(GameObject):
         elif self.y_pos <= 0:
             self.y_pos = 0
 
-    def detect_collision(self, another_entity_list):
+    def detect_collision(self, another_entity):
         """Check if there's a collision with another entity"""
-        for another_entity in another_entity_list:
-            if self.y_pos > another_entity.y_pos + another_entity.height:
-                return False
-            elif self.y_pos + self.height < another_entity.y_pos:
-                return False
+        if self.y_pos > another_entity.y_pos + another_entity.height:
+            return False
+        elif self.y_pos + self.height < another_entity.y_pos:
+            return False
 
-            if self.x_pos > another_entity.x_pos + another_entity.width:
-                return False
-            elif self.x_pos + self.width < another_entity.x_pos:
-                return False
+        if self.x_pos > another_entity.x_pos + another_entity.width:
+            return False
+        elif self.x_pos + self.width < another_entity.x_pos:
+            return False
 
-            return True
+        return True
 
 
 class NonPlayerCharacter(GameObject):
@@ -174,10 +190,11 @@ class NonPlayerCharacter(GameObject):
         self.x_pos += self.SPEED
 
 
-pygame.init()
+if __name__ == "__main__":
+    pygame.init()
 
-new_game = Game("background.png", SCREEN_TITLE, SCREEN_WIDHT, SCREEN_HEIGHT)
-new_game.run_game_loop(1)
+    new_game = Game("background.png", SCREEN_TITLE, SCREEN_WIDHT, SCREEN_HEIGHT)
+    new_game.run_game_loop(1)
 
-pygame.quit()
-quit()
+    pygame.quit()
+    quit()
