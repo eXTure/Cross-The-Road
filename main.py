@@ -2,7 +2,12 @@
 
 import sys
 import pygame
-import os
+import os, logging
+
+logging.basicConfig(level=logging.DEBUG,
+                filename='app.log',
+                filemode='w',
+                format='%(name)s - %(levelname)s - %(message)s')
 
 os.environ['SDL_VIDEO_CENTERED'] = "1"
 SCREEN_WIDHT = 800
@@ -13,7 +18,6 @@ BLACK_COLOR = (0, 0, 0)
 clock = pygame.time.Clock()
 pygame.font.init()
 font = pygame.font.SysFont("comicsans", 75)
-#level = 1
 
 class Game:
 
@@ -31,7 +35,7 @@ class Game:
         background_image = pygame.image.load(image_path)
         self.image = pygame.transform.scale(background_image, (width, height))
 
-    def run_game_loop(self, level_speed):
+    def run_game_loop(self, level_speed, level_number):
 
         is_game_over = False
         did_win = False
@@ -52,8 +56,6 @@ class Game:
 
         while not is_game_over:
 
-            #global level
-
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     is_game_over = True
@@ -69,7 +71,7 @@ class Game:
                     if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                         direction = 0
 
-                #print(event)
+                #print(event) print all movements and key presses to the terminal
 
             self.game_screen.fill(WHITE_COLOR) #Redraw the background image
             self.game_screen.blit(self.image, (0, 0))
@@ -79,14 +81,18 @@ class Game:
             enemy_0.move(self.width)
             enemy_0.draw(self.game_screen)
 
-            if level_speed > 2: #Level. Increasing difficulty
+            if level_number > 4: #Increasing difficulty
                 enemy_1.move(self.width)
                 enemy_1.draw(self.game_screen)
+
+            if level_number == 4: #Slow down speed when additional enemy appears
                 level_speed = 1
 
-            if level_speed > 4: #level
+            if level_number > 8: #Increasing difficulty
                 enemy_2.move(self.width)
                 enemy_2.draw(self.game_screen)
+
+            if level_number == 8: #Slow down speed when additional enemy appears
                 level_speed = 1
 
             if player_character.detect_collision(enemy_0) == True:
@@ -126,11 +132,9 @@ class Game:
             clock.tick(self.TICK_RATE)
 
         if did_win:
-            self.run_game_loop(level_speed + 0.5)
-            #level += 1
+            self.run_game_loop(level_speed + 0.5, level_number + 1)
         else:
-            self.run_game_loop(1)
-            #level = 1
+            self.run_game_loop(1, 1)
 
 
 class GameObject:
@@ -201,7 +205,7 @@ if __name__ == "__main__":
     pygame.init()
 
     new_game = Game("background.png", SCREEN_TITLE, SCREEN_WIDHT, SCREEN_HEIGHT)
-    new_game.run_game_loop(1)
+    new_game.run_game_loop(1, 1)
 
     pygame.quit()
     quit()
