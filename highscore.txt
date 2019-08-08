@@ -1,0 +1,5 @@
+Name|Score
+
+Player 1, 200
+Player 1, 500
+Player 1, 200

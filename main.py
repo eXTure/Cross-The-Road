@@ -9,7 +9,8 @@ logging.basicConfig(level=logging.DEBUG,
                 filemode='w',
                 format='%(name)s - %(levelname)s - %(message)s')
 
-os.environ['SDL_VIDEO_CENTERED'] = "1"
+logging.info("Logging Test")
+os.environ['SDL_VIDEO_CENTERED'] = "1" #Centers game window in the middle of the screen
 SCREEN_WIDHT = 800
 SCREEN_HEIGHT = 800
 SCREEN_TITLE = "Cross The Road RPG"
@@ -34,6 +35,25 @@ class Game:
         pygame.display.set_caption(title)
         background_image = pygame.image.load(image_path)
         self.image = pygame.transform.scale(background_image, (width, height))
+
+    def scores(self, player_name, score):
+
+        self.player_name = player_name
+        self.score = score
+
+        execution_path = os.getcwd()
+        f = open('highscore.txt','a')
+        write_msg = player_name, ", ", str(score), "\n"
+        f.writelines(write_msg)
+        f.close()
+
+
+    def scoring(self, level_number, level_speed):
+
+        score_points = (level_number + level_speed) * 100
+
+        return score_points
+
 
     def run_game_loop(self, level_speed, level_number):
 
@@ -134,6 +154,7 @@ class Game:
         if did_win:
             self.run_game_loop(level_speed + 0.5, level_number + 1)
         else:
+            self.scores("Player 1", int(self.scoring(level_number, level_speed)))
             self.run_game_loop(1, 1)
 
 
@@ -205,6 +226,7 @@ if __name__ == "__main__":
     pygame.init()
 
     new_game = Game("background.png", SCREEN_TITLE, SCREEN_WIDHT, SCREEN_HEIGHT)
+    score_points = 0
     new_game.run_game_loop(1, 1)
 
     pygame.quit()
