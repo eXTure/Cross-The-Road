@@ -13,7 +13,7 @@ logging.info("Logging Test")
 os.environ['SDL_VIDEO_CENTERED'] = "1" #Centers game window in the middle of the screen
 SCREEN_WIDHT = 800
 SCREEN_HEIGHT = 800
-SCREEN_TITLE = "Cross The Road RPG"
+SCREEN_TITLE = "Cross The Road"
 WHITE_COLOR = (255, 255, 255)
 BLACK_COLOR = (0, 0, 0)
 clock = pygame.time.Clock()

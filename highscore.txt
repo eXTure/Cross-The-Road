@@ -1,9 +1,7 @@
 Name|Score
 
-Player 1, 200
-Player 1, 500
-Player 1, 200
 Tomas, 200
 Tomas, 500
 Egle, 200
 Egle, 950
+Tomas, 200
