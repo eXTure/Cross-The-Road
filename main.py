@@ -55,7 +55,7 @@ class Game:
         return score_points
 
 
-    def run_game_loop(self, level_speed, level_number):
+    def run_game_loop(self, level_speed, level_number, player_name):
 
         is_game_over = False
         did_win = False
@@ -152,10 +152,10 @@ class Game:
             clock.tick(self.TICK_RATE)
 
         if did_win:
-            self.run_game_loop(level_speed + 0.5, level_number + 1)
+            self.run_game_loop(level_speed + 0.5, level_number + 1, self.player_name)
         else:
-            self.scores("Player 1", int(self.scoring(level_number, level_speed)))
-            self.run_game_loop(1, 1)
+            self.scores(player_name, int(self.scoring(level_number, level_speed)))
+            self.run_game_loop(1, 1, self.player_name)
 
 
 class GameObject:
@@ -227,7 +227,8 @@ if __name__ == "__main__":
 
     new_game = Game("background.png", SCREEN_TITLE, SCREEN_WIDHT, SCREEN_HEIGHT)
     score_points = 0
-    new_game.run_game_loop(1, 1)
+    player_name = input("Enter your name:")
+    new_game.run_game_loop(1, 1, player_name)
 
     pygame.quit()
     quit()
