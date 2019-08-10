@@ -60,6 +60,7 @@ class Game:
         is_game_over = False
         did_win = False
         direction = 0
+        self.player_name = player_name
 
         player_character = PlayerCharacter("player.png", 375, 700, 50, 50)
 
@@ -83,7 +84,18 @@ class Game:
                     if event.key == pygame.K_ESCAPE:
                         pygame.quit()
                         quit()
-                    if event.key == pygame.K_UP:
+                    elif event.key == pygame.K_SPACE:
+                        #Display score on the screen when player press space button
+                        text = font.render("Your Score: "+str(int(self.scoring(level_number, level_speed))), True, WHITE_COLOR)
+                        self.game_screen.blit(text, (200, 300))
+                        pygame.display.update()
+                        clock.tick(1)
+                    elif event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
+                        text = font.render("This won't help you run faster!", True, WHITE_COLOR)
+                        self.game_screen.blit(text, (25, 325))
+                        pygame.display.update()
+                        clock.tick(1)
+                    elif event.key == pygame.K_UP:
                         direction = 1
                     elif event.key == pygame.K_DOWN:
                         direction = -1
@@ -91,7 +103,7 @@ class Game:
                     if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                         direction = 0
 
-                #print(event) print all movements and key presses to the terminal
+                #logging.info(event) print all movements and key presses to the terminal
 
             self.game_screen.fill(WHITE_COLOR) #Redraw the background image
             self.game_screen.blit(self.image, (0, 0))
