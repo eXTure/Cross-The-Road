@@ -62,18 +62,18 @@ class Game:
         direction = 0
         self.player_name = player_name
 
-        player_character = PlayerCharacter("player.png", 375, 700, 50, 50)
+        player_character = PlayerCharacter("images/player.png", 375, 700, 50, 50)
 
-        enemy_0 = NonPlayerCharacter("enemy.png", 20, 600, 50, 50)
+        enemy_0 = NonPlayerCharacter("images/enemy.png", 20, 600, 50, 50)
         enemy_0.SPEED *= level_speed
 
-        enemy_1 = NonPlayerCharacter("enemy.png", self.width - 50, 400, 50, 50)
+        enemy_1 = NonPlayerCharacter("images/enemy.png", self.width - 50, 400, 50, 50)
         enemy_1.SPEED *= level_speed
 
-        enemy_2 = NonPlayerCharacter("enemy.png", 20, 200, 50, 50)
+        enemy_2 = NonPlayerCharacter("images/enemy.png", 20, 200, 50, 50)
         enemy_2.SPEED *= level_speed
 
-        treasure = GameObject("treasure.png", 375, 25, 50, 50)
+        treasure = GameObject("images/treasure.png", 375, 25, 50, 50)
 
         while not is_game_over:
 
@@ -237,7 +237,7 @@ class NonPlayerCharacter(GameObject):
 if __name__ == "__main__":
     pygame.init()
 
-    new_game = Game("background.png", SCREEN_TITLE, SCREEN_WIDHT, SCREEN_HEIGHT)
+    new_game = Game("images/background.png", SCREEN_TITLE, SCREEN_WIDHT, SCREEN_HEIGHT)
     score_points = 0
     player_name = input("Enter your name:")
     new_game.run_game_loop(1, 1, player_name)

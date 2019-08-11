@@ -6,3 +6,4 @@ Egle, 200
 Egle, 950
 Tomas, 2100
 Tomas, 500
+Tomas, 1950
