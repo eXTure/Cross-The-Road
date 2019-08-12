@@ -43,7 +43,7 @@ class Game:
 
         execution_path = os.getcwd()
         f = open('highscore.txt','a')
-        write_msg = player_name, ", ", str(score), "\n"
+        write_msg = player_name, ",", str(score), "\n"
         f.writelines(write_msg)
         f.close()
 

@@ -1,0 +1,12 @@
+Name|Score
+Tomas 2100 
+Tomas 1950 
+Egle 950 
+Egle 900 
+Tomas 500 
+Tomas 500 
+Tomas 500 
+Egle 200 
+Egle 200 
+Tomas 200 
+Egle 200 

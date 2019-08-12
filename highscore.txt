@@ -1,9 +1,12 @@
 Name|Score
-
-Tomas, 200
+Tomas, 2100 
+Tomas, 1950 
+Egle, 950 
+Tomas, 500 
+Tomas, 500 
+Egle, 200 
+Tomas, 200 
 Tomas, 500
-Egle, 200
-Egle, 950
-Tomas, 2100
-Tomas, 500
-Tomas, 1950
+Egle,200
+Egle,200
+Egle,900
