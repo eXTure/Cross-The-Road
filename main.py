@@ -1,15 +1,14 @@
 #Basic cross the road game using pygame
 
-import sys
+import sys, os, logging
 import pygame
-import os, logging
+import highscore_sorting as hs
 
 logging.basicConfig(level=logging.DEBUG,
                 filename='app.log',
                 filemode='w',
                 format='%(name)s - %(levelname)s - %(message)s')
 
-logging.info("Logging Test")
 os.environ['SDL_VIDEO_CENTERED'] = "1" #Centers game window in the middle of the screen
 SCREEN_WIDHT = 800
 SCREEN_HEIGHT = 800
@@ -167,6 +166,7 @@ class Game:
             self.run_game_loop(level_speed + 0.5, level_number + 1, self.player_name)
         else:
             self.scores(player_name, int(self.scoring(level_number, level_speed)))
+            hs.main() #run the sorting file
             self.run_game_loop(1, 1, self.player_name)
 
 
