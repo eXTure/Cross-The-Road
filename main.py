@@ -3,6 +3,7 @@
 import sys, os, logging
 import pygame
 import highscore_sorting as hs
+from highscore_sorting import top_three_items #--------------------------------------
 
 logging.basicConfig(level=logging.DEBUG,
                 filename='app.log',
@@ -92,6 +93,23 @@ class Game:
                     elif event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
                         text = font.render("This won't help you run faster!", True, WHITE_COLOR)
                         self.game_screen.blit(text, (25, 325))
+                        pygame.display.update()
+                        clock.tick(1)
+                    elif event.key == pygame.K_TAB:
+                        #try_list = top_three_items ---------------------------------------
+                        #logging.info(try_list)
+                        text1 = "Name|Score"
+                        text2 = "Tomas 2000"
+                        text3 = "Tomas 1250"
+                        text4 = "Egle 350"
+                        display_text1 = font.render(text1, True, BLACK_COLOR)
+                        display_text2 = font.render(text2, True, BLACK_COLOR)
+                        display_text3 = font.render(text3, True, BLACK_COLOR)
+                        display_text4 = font.render(text4, True, BLACK_COLOR)
+                        self.game_screen.blit(display_text1, (250, 275))
+                        self.game_screen.blit(display_text2, (250, 350))
+                        self.game_screen.blit(display_text3, (250, 425))
+                        self.game_screen.blit(display_text4, (250, 500))
                         pygame.display.update()
                         clock.tick(1)
                     elif event.key == pygame.K_UP:
