@@ -5,7 +5,7 @@ Egle 950
 Egle 900 
 Egle 900 
 Tomas 650 
-Egle 500 
-Egle 500 
 Tomas 500 
+Egle 500 
+Egle 500 
 Tomas 500 

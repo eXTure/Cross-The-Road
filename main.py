@@ -3,7 +3,7 @@
 import sys, os, logging
 import pygame
 import highscore_sorting as hs
-from highscore_sorting import top_three_items #--------------------------------------
+#from highscore_sorting import top_three_items #--------------------------------------
 
 logging.basicConfig(level=logging.DEBUG,
                 filename='app.log',
@@ -96,12 +96,13 @@ class Game:
                         pygame.display.update()
                         clock.tick(1)
                     elif event.key == pygame.K_TAB:
-                        #try_list = top_three_items ---------------------------------------
-                        #logging.info(try_list)
+                        hs.main() #run the sorting file
+                        from highscore_sorting import top_three_items
+                        try_list = top_three_items
                         text1 = "Name|Score"
-                        text2 = "Tomas 2000"
-                        text3 = "Tomas 1250"
-                        text4 = "Egle 350"
+                        text2 = str(try_list[0]).translate(str.maketrans("","","[](),'")) #Remove characters
+                        text3 = str(try_list[1]).translate(str.maketrans("","","[](),'")) #associated with
+                        text4 = str(try_list[2]).translate(str.maketrans("","","[](),'")) #lists
                         display_text1 = font.render(text1, True, BLACK_COLOR)
                         display_text2 = font.render(text2, True, BLACK_COLOR)
                         display_text3 = font.render(text3, True, BLACK_COLOR)

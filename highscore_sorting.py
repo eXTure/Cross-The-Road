@@ -12,6 +12,7 @@ top_three_items = []
 
 def main():
 
+    global top_three_items
     text = ""
     text_list1 = []
     text_list2 = []
@@ -21,7 +22,6 @@ def main():
     title_hold = ""
     write_text = ""
     text_dict = {}
-    global top_three_items
 
     with open("highscore.txt", "r") as reader:
 
