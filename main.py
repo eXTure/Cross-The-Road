@@ -3,7 +3,6 @@
 import sys, os, logging
 import pygame
 import highscore_sorting as hs
-#from highscore_sorting import top_three_items #--------------------------------------
 
 logging.basicConfig(level=logging.DEBUG,
                 filename='app.log',
@@ -91,18 +90,20 @@ class Game:
                         pygame.display.update()
                         clock.tick(1)
                     elif event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
+                        #A funny message when player presses left or right shift key
                         text = font.render("This won't help you run faster!", True, WHITE_COLOR)
                         self.game_screen.blit(text, (25, 325))
                         pygame.display.update()
                         clock.tick(1)
                     elif event.key == pygame.K_TAB:
+                        #Display highest scores when a player presses tab key
                         hs.main() #run the sorting file
                         from highscore_sorting import top_three_items
                         try_list = top_three_items
                         text1 = "Name|Score"
-                        text2 = str(try_list[0]).translate(str.maketrans("","","[](),'")) #Remove characters
-                        text3 = str(try_list[1]).translate(str.maketrans("","","[](),'")) #associated with
-                        text4 = str(try_list[2]).translate(str.maketrans("","","[](),'")) #lists
+                        text2 = str(try_list[0]).translate(str.maketrans("","","[](),'")) #Remove
+                        text3 = str(try_list[1]).translate(str.maketrans("","","[](),'")) #unnecassery
+                        text4 = str(try_list[2]).translate(str.maketrans("","","[](),'")) #characters
                         display_text1 = font.render(text1, True, BLACK_COLOR)
                         display_text2 = font.render(text2, True, BLACK_COLOR)
                         display_text3 = font.render(text3, True, BLACK_COLOR)
@@ -119,6 +120,7 @@ class Game:
                         direction = -1
                 elif event.type == pygame.KEYUP: #Event, when key is released
                     if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+                        #Immediatly stop character from moving when a player releases the movement button
                         direction = 0
 
                 #logging.info(event) print all movements and key presses to the terminal
@@ -131,14 +133,14 @@ class Game:
             enemy_0.move(self.width)
             enemy_0.draw(self.game_screen)
 
-            if level_number > 4: #Increasing difficulty
+            if level_number > 4: #Increasing difficulty, additional enemy
                 enemy_1.move(self.width)
                 enemy_1.draw(self.game_screen)
 
             if level_number == 4: #Slow down speed when additional enemy appears
                 level_speed = 1
 
-            if level_number > 8: #Increasing difficulty
+            if level_number > 8: #Increasing difficulty, a total of 3 enemies
                 enemy_2.move(self.width)
                 enemy_2.draw(self.game_screen)
 
@@ -213,12 +215,12 @@ class PlayerCharacter(GameObject):
         super().__init__(image_path, x, y, width, height)
 
     def move(self, direction, max_height):
-        if direction > 0: #Positive direction moves character downwards
+        if direction > 0: #Move up
             self.y_pos -= self.SPEED
-        elif direction < 0: #Negative values moves character upwards
+        elif direction < 0: #Move down
             self.y_pos += self.SPEED
 
-        if self.y_pos >= max_height - 50:
+        if self.y_pos >= max_height - 50: #Do not allow to move out of screen
             self.y_pos = max_height - 50
         elif self.y_pos <= 0:
             self.y_pos = 0
