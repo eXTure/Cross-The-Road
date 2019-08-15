@@ -6,9 +6,7 @@ Improvements made:
  - Player name input
  - Scoring system
    - Current score displayed when "Space" key is pressed
-
-In progress:
- - Display highest scores in game when a "Tab" key is pressed
+   - Display highest scores in game when a "Tab" key is pressed
 
 ![Screenshot](screenshot.jpg)
 
