@@ -7,6 +7,28 @@ Improvements made:
  - Scoring system
    - Current score displayed when "Space" key is pressed
    - Display highest scores in game when a "Tab" key is pressed
+   
+***How to run the game:***
+  **Install dependencies:**
+  ```
+  pipenv install
+  ```
+  **Run the game**
+  ```
+  pipenv run main.py
+  ```
+  **Enter your name in terminal and then play**
+  
+  
+  ***Keyboard usage:***
+  
+   Arrow Up - Move up
+  
+   Arrow Down - Move Down
+  
+   Space - Check your current score
+  
+   TAB - Check highest scores
 
 ![Screenshot](screenshot.jpg)
 
