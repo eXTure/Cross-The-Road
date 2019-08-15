@@ -9,6 +9,7 @@ Improvements made:
    - Display highest scores in game when a "Tab" key is pressed
    
 ***How to run the game:***
+
   **Install dependencies:**
   ```
   pipenv install
