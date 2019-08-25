@@ -1,6 +1,7 @@
 Name|Score
 Tomas 2100 
 Tomas 1950 
+Egle 1500 
 Egle 950 
 Egle 900 
 Egle 900 
@@ -8,4 +9,3 @@ Tomas 650
 Tomas 500 
 Egle 500 
 Egle 500 
-Tomas 500 

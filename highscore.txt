@@ -32,3 +32,4 @@ Tomas,350
 Tomas,650
 Egle,900
 Tomas,500
+Egle,1500
