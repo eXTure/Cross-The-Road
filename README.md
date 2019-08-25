@@ -12,11 +12,11 @@ Improvements made:
 
   **Install dependencies:**
   ```
-  pipenv install
+  pip install pygame
   ```
   **Run the game**
   ```
-  pipenv run main.py
+  python main.py
   ```
   **Enter your name in terminal and then play**
   
